@@ -22,7 +22,7 @@ public class DocumentacionApi {
         final Docket build = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(queryApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.dcatech.seguridad.services"))
+                .apis(RequestHandlerSelectors.basePackage("*"))
                 .paths(PathSelectors.any())
                 .build()
                 .tags(new Tag("Seguridad", "Administra y controla los esquemas de seguridad de la aplicación como la creación de usuarios y administración de los menús."));
