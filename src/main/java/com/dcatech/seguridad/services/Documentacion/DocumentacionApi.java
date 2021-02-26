@@ -11,6 +11,7 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 
@@ -22,7 +23,7 @@ public class DocumentacionApi {
         final Docket build = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(queryApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("*"))
+                .apis(RequestHandlerSelectors.basePackage("com.dcatech.seguridad.services"))
                 .paths(PathSelectors.any())
                 .build()
                 .tags(new Tag("Seguridad", "Administra y controla los esquemas de seguridad de la aplicación como la creación de usuarios y administración de los menús."));
