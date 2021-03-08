@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface MenuDao extends CrudRepository<Menu,Long> {
 
+    List<Menu> findAllByParentMenuIsNull();
     List<Menu> findByParentMenu_Id(Long id);
     List<Menu> findByParentMenu_IdNotNull();
 }
