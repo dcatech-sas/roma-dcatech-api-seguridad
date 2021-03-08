@@ -8,6 +8,8 @@ import com.dcatech.seguridad.services.models.dao.UsuarioDao;
 import com.dcatech.seguridad.services.models.services.IUsuariosServices;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,9 @@ public class UsuariosServices implements IUsuariosServices {
 
     @Autowired
     private UsuarioDao usuarioDao;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public List<Usuario> findUsers() {
@@ -39,6 +44,8 @@ public class UsuariosServices implements IUsuariosServices {
     @Override
     public Usuario create(Usuario usuario) throws Exception {
         try {
+            String passwordBCrypt = passwordEncoder.encode(usuario.getPassword());
+            usuario.setPassword(passwordBCrypt);
             return usuarioDao.save(usuario);
         }catch (Exception e){
             throw new MasterCreateException(e.getMessage());
@@ -50,12 +57,15 @@ public class UsuariosServices implements IUsuariosServices {
     public Usuario edit(Usuario usuario, Long id) throws MasterResourceNotFoundException {
         Usuario buscar = usuarioDao.findById(id).orElse(null);
 
+        String passwordBCrypt = passwordEncoder.encode(usuario.getPassword());
+
         if(buscar == null){
             throw new MasterResourceNotFoundException();
         }
 
+        buscar.setPassword(passwordBCrypt);
         buscar.setUsername(usuario.getUsername());
-        buscar.setEmail(usuario.getPassword());
+        buscar.setEmail(usuario.getEmail());
         buscar.setIntentos(usuario.getIntentos());
         buscar.setRoles(usuario.getRoles());
         buscar.setEnabled(usuario.getEnabled());
@@ -75,5 +85,10 @@ public class UsuariosServices implements IUsuariosServices {
             throw new MasterDeleteException(e.getMessage());
         }
 
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

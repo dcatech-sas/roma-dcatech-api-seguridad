@@ -132,16 +132,47 @@ public class MenuServices implements IMenuService {
             throw new MasterResourceNotFoundException();
         }
 
+        Set<Long> menuFinales = menu.getMenuRoles()
+                .stream().map(MenuRole::getId)
+                .collect(Collectors.toSet());
+
+        List<MenuRole> existen = buscarMenu.getMenuRoles()
+                .stream()
+                .filter(f -> !menuFinales
+                        .contains(f.getId())).collect(Collectors.toList());
+
+        if(existen.size() != 0){
+            existen.stream().forEach(f -> {
+                try {
+                    deleteRole(f.getId());
+                } catch (MasterDeleteException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+
         buscarMenu.setDescription(menu.getDescription());
         buscarMenu.setIconName(menu.getIconName());
         buscarMenu.setIconType(menu.getIconType());
-        buscarMenu.setMenuRoles(menu.getMenuRoles());
         buscarMenu.setLabel(menu.getLabel());
         buscarMenu.setOrden(menu.getOrden());
         buscarMenu.setParentMenu(menu.getParentMenu());
         buscarMenu.setVisible(menu.getVisible());
         buscarMenu.setRouterLink(menu.getRouterLink());
         buscarMenu.setDetails(menu.getDetails());
+
+        List<MenuRole> menuRoles;
+
+        Menu finalNewMenu = menu;
+        menuRoles = menu.getMenuRoles()
+                .stream()
+                .map(m -> {
+                    m.setMenuId(finalNewMenu);
+                    return menuRoleDao.save(m);
+                }).collect(Collectors.toList());
+
+        buscarMenu.setMenuRoles(menuRoles);
 
         try {
             return menuDao.save(buscarMenu);
@@ -155,6 +186,15 @@ public class MenuServices implements IMenuService {
     public void delete(Long id) throws MasterDeleteException {
         try{
             menuDao.deleteById(id);
+        }catch (Exception e){
+            throw new MasterDeleteException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteRole(Long id) throws MasterDeleteException {
+        try {
+            menuRoleDao.deleteById(id);
         }catch (Exception e){
             throw new MasterDeleteException(e.getMessage());
         }

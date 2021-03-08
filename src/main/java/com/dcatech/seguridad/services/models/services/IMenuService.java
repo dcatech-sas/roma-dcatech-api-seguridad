@@ -17,4 +17,5 @@ public interface IMenuService {
     Menu create(Menu menu) throws MasterCreateException;
     Menu edit(Menu menu, Long id) throws MasterResourceNotFoundException, MasterEditException;
     void delete(Long id) throws MasterDeleteException;
+    void deleteRole(Long id) throws MasterDeleteException;
 }

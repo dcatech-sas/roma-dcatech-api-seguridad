@@ -125,4 +125,18 @@ public class MenuController {
     public void delete(@PathVariable Long id) throws MasterDeleteException {
         menuService.delete(id);
     }
+
+    @ApiOperation(value = "Eliminar rol asociado al menú", notes = "<br>Permite eliminar los diferentes roles asociados a los menus de la aplicación."
+            , response = Menu.class, produces = "application/json")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Operación Exitosa"),
+            @ApiResponse(code = 401, message = "No posees  autorización"),
+            @ApiResponse(code = 403, message = "Esta operación no esta permitida"),
+            @ApiResponse(code = 404, message = "Recurso no encotrado"),
+            @ApiResponse(code = 500, message = "Error del sistema")
+    })
+    @DeleteMapping("/deleterol/{id}")
+    public void deleteRol(@PathVariable Long id) throws MasterDeleteException {
+        menuService.deleteRole(id);
+    }
 }
