@@ -141,6 +141,7 @@ public class MenuServices implements IMenuService {
         buscarMenu.setParentMenu(menu.getParentMenu());
         buscarMenu.setVisible(menu.getVisible());
         buscarMenu.setRouterLink(menu.getRouterLink());
+        buscarMenu.setDetails(menu.getDetails());
 
         try {
             return menuDao.save(buscarMenu);
