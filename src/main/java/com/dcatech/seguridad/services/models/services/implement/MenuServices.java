@@ -37,6 +37,11 @@ public class MenuServices implements IMenuService {
     private MenuRoleDao menuRoleDao;
 
     @Override
+    public Menu findById(Long id) {
+        return menuDao.findById(id).e;
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Menu> findMenuSubMenu(Long id) {
         return menuDao.findByParentMenu_Id(id);

@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface IMenuService {
 
+    Menu findById(Long id);
     List<Menu> findMenuSubMenu(Long id);
     List<Menu> findMenuSubMenu();
     List<Menu> findMenu();
