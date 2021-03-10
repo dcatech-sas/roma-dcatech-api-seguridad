@@ -82,16 +82,18 @@ INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_M
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Reclasificación de Información','Reclasificación de Información','fa fa-sitemap',true,3,'web/manteinance',49,'fa fa-sitemap','close','dummy');
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Generador de queries','Generador de queries','fa fa-sitemap',true,4,'web/manteinance',49,'fa fa-sitemap','close','dummy');
 
---53
+--54
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Administracion del Sistema','Administracion del Sistema','fa fa-sliders',true,12,'web/Descricpcion Opcion',null,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Horas extras y recargos','Horas extras y recargos','fa fa-sitemap',true,1,'web/extra-hours/list',53,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Solicitudes','Solicitudes','fa fa-sitemap',true,2,'web/requests',53,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Horas extras y recargos','Horas extras y recargos','fa fa-sitemap',true,1,'web/extra-hours/list',54,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Solicitudes','Solicitudes','fa fa-sitemap',true,2,'web/requests',54,'fa fa-sitemap','close','dummy');
 
---56
+--57
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Seguridad','Menú que lista las opciones de seguridad','fa fa-sliders',true,1,'',null,'fa fa-sliders','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Usuarios','Menú que lista los usuarios del sistema','fa fa-sitemap',true,1,'/api/security/**',56,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Roles','Menú que lista los roles del sistema','fa fa-sitemap',true,2,'/api/security/**',56,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Menú','Menú que lista los menús de la aplicación','fa fa-sitemap',true,3,'/api/security/**',56,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Usuarios','Menú que lista los usuarios del sistema','fa fa-sitemap',true,1,'/api/security/**',57,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Roles','Menú que lista los roles del sistema','fa fa-sitemap',true,2,'/api/security/**',57,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Menú','Menú que lista los menús de la aplicación','fa fa-sitemap',true,3,'/api/security/**',57,'fa fa-sitemap','close','dummy');
+
+--61
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Utilidades','Menú que lista las opciones generales','fa fa-sitemap',true,2,'',null,'fa fa-sitemap','close','dummy');
 
 INSERT INTO menus_roles(opt_create,opt_delete,opt_select,opt_update,menu_id,role_id) VALUES(true,true,true,true,1,1);
