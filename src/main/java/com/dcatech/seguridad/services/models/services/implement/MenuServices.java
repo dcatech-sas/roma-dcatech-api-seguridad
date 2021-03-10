@@ -1,23 +1,49 @@
 package com.dcatech.seguridad.services.models.services.implement;
 
 import com.dcatech.security.commons.models.entity.Menu;
+import com.dcatech.security.commons.models.entity.MenuRole;
+import com.dcatech.security.commons.models.entity.Role;
+import com.dcatech.security.commons.models.entity.Usuario;
 import com.dcatech.seguridad.services.exception.exceptions.MasterCreateException;
 import com.dcatech.seguridad.services.exception.exceptions.MasterDeleteException;
 import com.dcatech.seguridad.services.exception.exceptions.MasterEditException;
 import com.dcatech.seguridad.services.exception.exceptions.MasterResourceNotFoundException;
 import com.dcatech.seguridad.services.models.dao.MenuDao;
+import com.dcatech.seguridad.services.models.dao.MenuRoleDao;
+import com.dcatech.seguridad.services.models.dao.UsuarioDao;
 import com.dcatech.seguridad.services.models.services.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class MenuServices implements IMenuService {
 
     @Autowired
     private MenuDao menuDao;
+
+    @Autowired
+    private UsuarioDao usuarioDao;
+
+    @Autowired
+    private MenuRoleDao menuRoleDao;
+
+    @Override
+    public Menu findById(Long id) throws MasterResourceNotFoundException {
+        Menu menu = menuDao.findById(id).orElse(null);
+        if(menu == null)
+            throw new MasterResourceNotFoundException();
+
+        return menu;
+    }
 
     @Override
     @Transactional(readOnly = true)
@@ -34,14 +60,73 @@ public class MenuServices implements IMenuService {
     @Override
     @Transactional(readOnly = true)
     public List<Menu> findMenu() {
-        return (List<Menu>)menuDao.findAll();
+        return menuDao.findAllByParentMenuIsNull();
+    }
+
+
+    private Boolean isGranteedAccess(List<Role> userRoles, Menu menu){
+
+        Set<Long> rolesUserName = userRoles
+                .stream().map(Role::getId)
+                .collect(Collectors.toSet());
+
+        Long existe = menu.getMenuRoles().stream().filter(opt ->
+                rolesUserName.contains(opt.getRoleId().getId())
+                        && opt.getOptSelect().equals(true)).count();
+
+        return existe != 0 ? true : false;
+
+    }
+
+
+    private Menu getSubMenu(List<Role> userRoles, Menu lvMenus){
+        lvMenus.setSubmenu(lvMenus.getSubmenu().stream().filter(
+                subMenuItem -> isGranteedAccess(userRoles, subMenuItem)
+        ).collect(Collectors.toList()));
+
+        return lvMenus;
     }
 
     @Override
-    @Transactional
+    public List<Menu> findMenuByUserRol(String username) throws MasterResourceNotFoundException {
+
+        Usuario usuario = usuarioDao.findByUsername(username);
+        if (usuario == null) {
+            throw new MasterResourceNotFoundException("El usuario " + username + " no esta registrado.");
+        }
+
+        List<Menu> menus = menuDao.findAllByParentMenuIsNull();
+
+        List<Menu> menuResultado = menus.stream()
+                .filter(menuItem -> isGranteedAccess(usuario.getRoles(), menuItem))
+                .map(menuItem -> getSubMenu(usuario.getRoles(), menuItem))
+                .collect(Collectors.toList());
+
+        return menuResultado;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NESTED)
     public Menu create(Menu menu) throws MasterCreateException {
         try {
-            return menuDao.save(menu);
+
+            Menu newMenu;
+            List<MenuRole> menuRoles;
+
+            newMenu = menuDao.save(menu);
+
+            Menu finalNewMenu = newMenu;
+            menuRoles = menu.getMenuRoles()
+                    .stream()
+                    .map(m -> {
+                        m.setMenuId(finalNewMenu);
+                        return menuRoleDao.save(m);
+                    }).collect(Collectors.toList());
+
+            newMenu.setMenuRoles(menuRoles);
+
+            return menuDao.save(newMenu);
+
         }catch (Exception e){
             throw new MasterCreateException(e.getMessage());
         }
@@ -56,14 +141,47 @@ public class MenuServices implements IMenuService {
             throw new MasterResourceNotFoundException();
         }
 
+        Set<Long> menuFinales = menu.getMenuRoles()
+                .stream().map(MenuRole::getId)
+                .collect(Collectors.toSet());
+
+        List<MenuRole> existen = buscarMenu.getMenuRoles()
+                .stream()
+                .filter(f -> !menuFinales
+                        .contains(f.getId())).collect(Collectors.toList());
+
+        if(existen.size() != 0){
+            existen.stream().forEach(f -> {
+                try {
+                    deleteRole(f.getId());
+                } catch (MasterDeleteException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+
         buscarMenu.setDescription(menu.getDescription());
-        buscarMenu.setIcon(menu.getIcon());
-        buscarMenu.setMenuRoles(menu.getMenuRoles());
-        buscarMenu.setName(menu.getName());
+        buscarMenu.setIconName(menu.getIconName());
+        buscarMenu.setIconType(menu.getIconType());
+        buscarMenu.setLabel(menu.getLabel());
         buscarMenu.setOrden(menu.getOrden());
         buscarMenu.setParentMenu(menu.getParentMenu());
-        buscarMenu.setStatus(menu.getStatus());
-        buscarMenu.setUrl(menu.getUrl());
+        buscarMenu.setVisible(menu.getVisible());
+        buscarMenu.setRouterLink(menu.getRouterLink());
+        buscarMenu.setDetails(menu.getDetails());
+
+        List<MenuRole> menuRoles;
+
+        Menu finalNewMenu = menu;
+        menuRoles = menu.getMenuRoles()
+                .stream()
+                .map(m -> {
+                    m.setMenuId(finalNewMenu);
+                    return menuRoleDao.save(m);
+                }).collect(Collectors.toList());
+
+        buscarMenu.setMenuRoles(menuRoles);
 
         try {
             return menuDao.save(buscarMenu);
@@ -77,6 +195,15 @@ public class MenuServices implements IMenuService {
     public void delete(Long id) throws MasterDeleteException {
         try{
             menuDao.deleteById(id);
+        }catch (Exception e){
+            throw new MasterDeleteException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteRole(Long id) throws MasterDeleteException {
+        try {
+            menuRoleDao.deleteById(id);
         }catch (Exception e){
             throw new MasterDeleteException(e.getMessage());
         }
