@@ -194,7 +194,35 @@ public class MenuServices implements IMenuService {
     @Transactional
     public void delete(Long id) throws MasterDeleteException {
         try{
+
+            Menu menu = menuDao.findById(id).orElse(null);
+
+            if(menu == null){
+                throw new MasterResourceNotFoundException();
+            }
+
+            if(menu.getMenuRoles().size() != 0) {
+
+                menu.getMenuRoles()
+                        .stream()
+                        .forEach(f ->
+                                menuRoleDao.deleteById(f.getId())
+                                );
+
+            }
+
+            if(menu.getSubmenu().size() != 0){
+
+                menu.getSubmenu()
+                        .stream()
+                        .forEach(f ->
+                                menuDao.deleteById(f.getId())
+                                );
+
+            }
+
             menuDao.deleteById(id);
+
         }catch (Exception e){
             throw new MasterDeleteException(e.getMessage());
         }

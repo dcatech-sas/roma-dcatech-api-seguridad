@@ -42,7 +42,7 @@ INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_M
 
 --24
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Liquidaciones','Liquidaciones','fa fa-sliders',true,4,'web/payroll-news-list',null,'fa fa-sliders','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Liquidaciones','Liquidaciones','fa fa-sitemap',true,1,'web/pay-periodic-payroll',24,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Liquidación','Liquidaciones','fa fa-sitemap',true,1,'web/pay-periodic-payroll',24,'fa fa-sitemap','close','dummy');
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Autoliquidaciones','Autoliquidaciones','fa fa-sitemap',true,2,'web/pay-periodic-payroll',24,'fa fa-sitemap','close','dummy');
 
 --27
@@ -61,11 +61,11 @@ INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_M
 --36
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Consultas y reportes','Consultas y reportes','fa fa-sliders',true,8,'web/manteinance',null,'fa fa-sliders','close','dummy');
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Gestión de Reportes','Gestión de Reportes','fa fa-sitemap',true,1,'web/settlement-report',36,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Archivos auxiliares','Archivos auxiliares','fa fa-sitemap',true,2,'web/manteinance',36,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Archivo auxiliar','Archivos auxiliares','fa fa-sitemap',true,2,'web/manteinance',36,'fa fa-sitemap','close','dummy');
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Empleados & contratos','Empleados & contratos','fa fa-sitemap',true,3,'web/manteinance',36,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Novedades','Novedades','fa fa-sitemap',true,4,'web/manteinance',36,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Liquidaciones','Liquidaciones','fa fa-sitemap',true,5,'web/manteinance',36,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Comprobantes de pago','Comprobantes de pago','fa fa-sitemap',true,1,'web/proof-of-payment',41,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Novedad','Novedades','fa fa-sitemap',true,4,'web/manteinance',36,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Reporte Liquidaciones','Liquidaciones','fa fa-sitemap',true,5,'web/manteinance',36,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Comprobante de pago','Comprobantes de pago','fa fa-sitemap',true,1,'web/proof-of-payment',41,'fa fa-sitemap','close','dummy');
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Hist. Reg. Vacaciones','Hist. Reg. Vacaciones','fa fa-sitemap',true,2,'web/manteinance',41,'fa fa-sitemap','close','dummy');
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Hist. Rep. cesantias','Hist. Rep. cesantias','fa fa-sitemap',true,3,'web/manteinance',41,'fa fa-sitemap','close','dummy');
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Hist. Cert. de ingresos','Hist. Cert. de ingresos','fa fa-sitemap',true,4,'web/manteinance',41,'fa fa-sitemap','close','dummy');
@@ -73,27 +73,26 @@ INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_M
 
 --47
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Contabilización','Contabilización','fa fa-sitemap',true,9,'web/manteinance',null,'fa fa-sitemap','close','dummy');
+
 --48
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Seguridad social','Seguridad social','fa fa-sitemap',true,10,'web/manteinance',null,'fa fa-sitemap','close','dummy');
---49
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Utilitarios','Utilitarios','fa fa-sitemap',true,11,'web/manteinance',null,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Funciones de Nomina','Funciones de Nomina','fa fa-sitemap',true,1,'web/functions/list',49,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Tareas programadas','Tareas programadas','fa fa-sitemap',true,2,'web/scheduled-tasks/list',49,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Reclasificación de Información','Reclasificación de Información','fa fa-sitemap',true,3,'web/manteinance',49,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Generador de queries','Generador de queries','fa fa-sitemap',true,4,'web/manteinance',49,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Funciones de Nomina','Funciones de Nomina','fa fa-sitemap',true,1,'web/functions/list',48,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Tareas programadas','Tareas programadas','fa fa-sitemap',true,2,'web/scheduled-tasks/list',48,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Reclasificación de Información','Reclasificación de Información','fa fa-sitemap',true,3,'web/manteinance',48,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Generador de queries','Generador de queries','fa fa-sitemap',true,4,'web/manteinance',48,'fa fa-sitemap','close','dummy');
 
---54
+--53
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Administracion del Sistema','Administracion del Sistema','fa fa-sliders',true,12,'web/Descricpcion Opcion',null,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Horas extras y recargos','Horas extras y recargos','fa fa-sitemap',true,1,'web/extra-hours/list',54,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Solicitudes','Solicitudes','fa fa-sitemap',true,2,'web/requests',54,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Horas extras y recargos','Horas extras y recargos','fa fa-sitemap',true,1,'web/extra-hours/list',53,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Solicitudes','Solicitudes','fa fa-sitemap',true,2,'web/requests',53,'fa fa-sitemap','close','dummy');
 
---57
+--56
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Seguridad','Menú que lista las opciones de seguridad','fa fa-sliders',true,1,'',null,'fa fa-sliders','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Usuarios','Menú que lista los usuarios del sistema','fa fa-sitemap',true,1,'/api/security/**',57,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Roles','Menú que lista los roles del sistema','fa fa-sitemap',true,2,'/api/security/**',57,'fa fa-sitemap','close','dummy');
-INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Menú','Menú que lista los menús de la aplicación','fa fa-sitemap',true,3,'/api/security/**',57,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Usuarios','Menú que lista los usuarios del sistema','fa fa-sitemap',true,1,'/api/security/**',56,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Roles','Menú que lista los roles del sistema','fa fa-sitemap',true,2,'/api/security/**',56,'fa fa-sitemap','close','dummy');
+INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Menú','Menú que lista los menús de la aplicación','fa fa-sitemap',true,3,'/api/security/**',56,'fa fa-sitemap','close','dummy');
 
---61
+--60
 INSERT INTO menus(LABEL,DESCRIPTION,ICON_NAME,VISIBLE,ORDEN,ROUTER_LINK,PARENT_MENU_ID,ICON_TYPE,TOGGLE,menu_Item_Based_On_Id) VALUES('Utilidades','Menú que lista las opciones generales','fa fa-sitemap',true,2,'',null,'fa fa-sitemap','close','dummy');
 
 INSERT INTO menus_roles(opt_create,opt_delete,opt_select,opt_update,menu_id,role_id) VALUES(true,true,true,true,1,1);
