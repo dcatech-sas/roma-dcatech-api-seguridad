@@ -48,19 +48,22 @@ public class MenuServices implements IMenuService {
     @Override
     @Transactional(readOnly = true)
     public List<Menu> findMenuSubMenu(Long id) {
-        return menuDao.findByParentMenu_Id(id);
+            List<Menu> menus = menuDao.findByParentMenu_Id(id);
+            return menus;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Menu> findMenuSubMenu() {
-        return menuDao.findByParentMenu_IdNotNull();
+        List<Menu> menus = menuDao.findByParentMenu_IdNotNull();
+        return menus;
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Menu> findMenu() {
-        return menuDao.findAllByParentMenuIsNull();
+        List<Menu> menus = menuDao.findAllByParentMenuIsNull();
+        return menus;
     }
 
 
@@ -170,6 +173,7 @@ public class MenuServices implements IMenuService {
         buscarMenu.setVisible(menu.getVisible());
         buscarMenu.setRouterLink(menu.getRouterLink());
         buscarMenu.setDetails(menu.getDetails());
+        buscarMenu.setToggle(menu.getToggle());
 
         List<MenuRole> menuRoles;
 
@@ -235,5 +239,18 @@ public class MenuServices implements IMenuService {
         }catch (Exception e){
             throw new MasterDeleteException(e.getMessage());
         }
+    }
+
+    @Override
+    public List<MenuRole> findByRoleStatus(Long id, Boolean status, String endpoint) {
+        List<MenuRole> roles;
+        switch (endpoint){
+            case "CREATE":
+                roles = menuRoleDao.findByRoleId_IdAndOptCreate(id,status);
+                break;
+            case "UPDATE":
+        }
+
+        return null;
     }
 }

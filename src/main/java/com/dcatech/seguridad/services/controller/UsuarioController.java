@@ -1,7 +1,9 @@
 package com.dcatech.seguridad.services.controller;
 
 import com.dcatech.security.commons.models.entity.Usuario;
+import com.dcatech.seguridad.services.exception.exceptions.MasterCreateException;
 import com.dcatech.seguridad.services.exception.exceptions.MasterDeleteException;
+import com.dcatech.seguridad.services.exception.exceptions.MasterEditException;
 import com.dcatech.seguridad.services.exception.exceptions.MasterResourceNotFoundException;
 import com.dcatech.seguridad.services.models.services.IUsuariosServices;
 import io.swagger.annotations.Api;
@@ -9,9 +11,14 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -59,8 +66,21 @@ public class UsuarioController {
             @ApiResponse(code = 500, message = "Error del sistema")
     })
     @PostMapping("/create")
-    public Usuario create(@RequestBody Usuario usuario) throws Exception {
-        return usuariosServices.create(usuario);
+    public Usuario create(@Valid @RequestBody Usuario usuario, BindingResult result) throws Exception {
+        List<String> errores = new ArrayList<>();
+
+        if(result.hasErrors()){
+            errores = result.getFieldErrors()
+                    .stream()
+                    .map(err -> {
+                        return String.format("El campo '%s' %s", err.getField(),err.getDefaultMessage());
+                    }).collect(Collectors.toList());
+        }
+        try {
+            return usuariosServices.create(usuario);
+        }catch (Exception e){
+            throw new MasterCreateException(errores.toString());
+        }
     }
 
     @ApiOperation(value = "Editar usuarios", notes = "<br>Permite la edición del usuario dentro del sistema,"
@@ -73,8 +93,23 @@ public class UsuarioController {
             @ApiResponse(code = 500, message = "Error del sistema")
     })
     @PutMapping("/update/{id}")
-    public Usuario edit(@RequestBody Usuario usuario, @PathVariable Long id) throws MasterResourceNotFoundException {
-        return usuariosServices.edit(usuario, id);
+    public Usuario edit(@Valid @RequestBody Usuario usuario,  BindingResult result, @PathVariable Long id) throws MasterResourceNotFoundException, MasterEditException {
+        List<String> errores = new ArrayList<>();
+
+        if(result.hasErrors()){
+            errores = result.getFieldErrors()
+                    .stream()
+                    .map(err -> {
+                        return String.format("El campo '%s' %s", err.getField(),err.getDefaultMessage());
+                    }).collect(Collectors.toList());
+        }
+
+        try {
+            return usuariosServices.edit(usuario, id);
+        }catch (Exception e){
+            throw new MasterEditException(errores.toString());
+        }
+
     }
 
     @ApiOperation(value = "Eliminar usuarios", notes = "<br>Permite la eliminación del usuario dentro del sistema."

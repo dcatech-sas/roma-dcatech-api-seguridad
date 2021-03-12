@@ -65,7 +65,7 @@ public class MenuController {
             @ApiResponse(code = 404, message = "Recurso no encotrado"),
             @ApiResponse(code = 500, message = "Error del sistema")
     })
-    @GetMapping("/menu/{submenu}")
+    @GetMapping("/submenu/{submenu}")
     public List<Menu> getMenus(@PathVariable Long submenu){
         return menuService.findMenuSubMenu(submenu);
     }
@@ -82,6 +82,20 @@ public class MenuController {
     @GetMapping("/submenu")
     public List<Menu> getSubMenus(){
         return menuService.findMenuSubMenu();
+    }
+
+    @ApiOperation(value = "Obtener el Menú", notes = "<br>Retorna el menú filtrado por el ID."
+            , response = Menu.class, produces = "application/json")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Operación Exitosa", response = Menu.class),
+            @ApiResponse(code = 401, message = "No posees  autorización"),
+            @ApiResponse(code = 403, message = "Esta operación no esta permitida"),
+            @ApiResponse(code = 404, message = "Recurso no encotrado"),
+            @ApiResponse(code = 500, message = "Error del sistema")
+    })
+    @GetMapping("/menu/{id}")
+    public Menu getMenu(@PathVariable Long id) throws MasterResourceNotFoundException {
+        return menuService.findById(id);
     }
 
     @ApiOperation(value = "Crear menú", notes = "<br>Permite el registro de las diferentes opciones de menú, submenu y accesos de la aplicación."

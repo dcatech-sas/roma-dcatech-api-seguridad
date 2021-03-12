@@ -1,6 +1,7 @@
 package com.dcatech.seguridad.services.models.services;
 
 import com.dcatech.security.commons.models.entity.Menu;
+import com.dcatech.security.commons.models.entity.MenuRole;
 import com.dcatech.seguridad.services.exception.exceptions.MasterCreateException;
 import com.dcatech.seguridad.services.exception.exceptions.MasterDeleteException;
 import com.dcatech.seguridad.services.exception.exceptions.MasterEditException;
@@ -19,5 +20,8 @@ public interface IMenuService {
     Menu edit(Menu menu, Long id) throws MasterResourceNotFoundException, MasterEditException;
     void delete(Long id) throws MasterDeleteException;
     void deleteRole(Long id) throws MasterDeleteException;
+
+
+    List<MenuRole> findByRoleStatus(Long id, Boolean status, String endpoint);
 
 }
